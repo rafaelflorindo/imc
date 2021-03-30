@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Cadastro</title>
+</head>
+
+<body>
+    <div>
+        <div>
+            <h1>Cadastro</h1>
+        </div>
+        <div>            
+            <form action="../Controller/controllerIMC.php" method="post">
+                <label for="peso">Peso: </label>
+                <input type="text" name="peso" id="peso">
+                <label for="altura">Altura: </label>
+                <input type="text" name="altura" id="altura">
+
+                <label for="pressao">Aferição da pressão arterial: </label>
+                <input type="text" name="pressao" id="pressao">
+                
+                <input type="hidden" name="pessoa_id" value="1">
+                <button type="submit">Cadastrar</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
