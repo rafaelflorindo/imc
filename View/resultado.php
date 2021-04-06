@@ -1,7 +1,7 @@
 <?php
 
-$resultado = $_GET["resultado"];
-echo "Índice de massa : " . number_format($resultado, 2, '.', '');;
+$resultado = filter_input(INPUT_GET, 'resultado');
+echo "Índice de massa : " . number_format($resultado, 2, '.', '');
 echo "<br>";
 
 if($resultado < 18.5){

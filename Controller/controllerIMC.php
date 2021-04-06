@@ -1,6 +1,4 @@
 <?php
-//validar peso e altura
-//pressao, pessoa_id
     if(isset($_POST) && !empty($_POST)){
         if(
             isset($_POST["peso"]) && 
@@ -13,48 +11,26 @@
             !empty($_POST["pessoa_id"])
             ){
                 $peso = filter_input(INPUT_POST, 'peso');
-                $altura = $_POST["altura"];
-                $pressao = $_POST["pressao"];
-                $pessoa_id = $_POST["pessoa_id"];
+                $altura = filter_input(INPUT_POST, 'altura');
+                $pressao = filter_input(INPUT_POST, 'pressao');
+                $pessoa_id = filter_input(INPUT_POST, 'pessoa_id');
 
                 include("../Model/IMC.php");
-                $calculo = new IMC($peso, $altura, $pressao, $pessoa_id);
-                $retorno = $calculo->addAtendimento();
-                //echo $retorno ? "Gravado com Sucesso" : "Erro ao gravar";
+                $calculo = new IMC();
+                $retorno = $calculo->addAtendimento($peso, $altura, $pressao, $pessoa_id);
+               
                 if($retorno){
                     $calculo->calcular();
                     $resultado = $calculo->getResultadoImc();
-                   
-                    /*echo "<hr>";
-                    echo "IMC = " . $resultado;
-                    echo "<br>";*/
-                    header('location: ../view/resultado.php?resultado='.$resultado);
-   
-                }
-                
-                //echo $resultado < 18.5 ? "Classificação: Magresa <br>Grau de Obesidade: 0": "";
-
-               /* if($resultado < 18.5){
-                    echo "Classificação: Magresa";
-                    echo "<br>Grau de Obesidade: 0";
-                }elseif($resultado < 24.9) {
-                    echo "Classificação: Normal";
-                    echo "<br>Grau de Obesidade: 0";
-                }elseif($resultado < 29.9) {
-                    echo "Classificação: SOBREPESO";
-                    echo "<br>Grau de Obesidade: I";
-                }elseif($resultado < 39.9) {
-                    echo "Classificação: Obesidade";
-                    echo "<br>Grau de Obesidade: II";
-                }elseif($resultado > 40) {
-                    echo "Classificação: Obesidade Grave";
-                    echo "<br>Grau de Obesidade: III";
+                    header('location: ../index.php?pagina=View/formulario.php&erro=nao&mensagem=Sucesso!!!&resultado='.$resultado);
                 }else{
-                    echo "---";
-                }*/
+                    header('location: ../index.php?pagina=View/formulario.php&erro=sim&mensagem=Não foi possível armazenar valor!!!');
+                    //echo "Não foi possível armazenar valor!!!";
+                }
         }else{
-            echo "Há um campo não preenchido!!!";
+            header('location: ../index.php?pagina=View/formulario.php&erro=sim&mensagem=Há um campo não preenchido!!!');
         }
     }else{
-        echo "Não existem valores para o calculo do IMC";
+        header('location: ../index.php?pagina=View/formulario.php&erro=sim&mensagem=Não existem valores para o calculo do IMC');
+        //echo "Não existem valores para o calculo do IMC";
     }
