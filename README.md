@@ -1,4 +1,9 @@
-Softwares instalados
+<html>
+  <head>Readme.md</head>
+  
+ <body>
+   
+   <h3> Softwares instalados</h3>
 - php na versão 7 ou superior
 
 view Entrada: Altura e Peso 
@@ -38,3 +43,5 @@ cadastrar
 Listar todos
 Listar UM
 Deletar
+  </body>
+  </html>
